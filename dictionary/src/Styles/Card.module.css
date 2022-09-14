@@ -1,0 +1,17 @@
+.card {
+    border: 2px solid #68829e;
+    background-color: #68829e;
+    color: white;
+    border-radius: 5px;
+    width: 400px;
+    height: 180px;
+    margin: 10px;
+    padding: 10px 0px;
+}
+
+.card:hover {
+    font-weight: bolder;
+    background-color: #aebd38;
+    border: 2px solid #aebd38;
+
+}
