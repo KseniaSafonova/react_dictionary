@@ -1,24 +1,36 @@
+import React from 'react';
 import Button from './Button';
 import styles from './../Styles/Card.module.css';
-import { useState } from 'react';
 
-export default function Card(props) {
-    const { english, transcription, russian, addCount } = props;
 
-    const [pressed, setPressed] = useState(false);
-
-    const handleClick = () => {
-        setPressed(!pressed);
+export default class Card extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            pressed: false,
+        }
     }
-    return (
-        <div className={styles.card}>
-            <p>{english}</p>
-            <p>{transcription}</p>
 
-            {
-                pressed ? <p onClick={() => setPressed(false)}>{russian}</p> : <Button title='Показать перевод' showTranslation={handleClick} Count={addCount} />
-            }
+    handleClick = () => {
+        this.setState({ pressed: true });
+    }
 
-        </div>
-    )
-};
+    handleCancel = () => {
+        this.setState({ pressed: false });
+    }
+    render() {
+        const { english, transcription, russian, AddCount } = this.props;
+        return (
+            <div className={styles.card}>
+                <p>{english}</p>
+                <p>{transcription}</p>
+                {
+                    this.state.pressed ?
+                        <p onClick={this.handleCancel}>{russian}</p>
+                        :
+                        <Button title='Показать перевод' showTranslation={this.handleClick} count={AddCount} />
+                }
+            </div>
+        )
+    }
+}
