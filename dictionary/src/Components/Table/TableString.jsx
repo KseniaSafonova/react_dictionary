@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import styles from './Table.module.css'
+import styles from './Table.module.css';
+import Context from '../../Context';
 
 export default function TableString(props) {
     const { id, english, transcription, russian } = props;
