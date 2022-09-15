@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import TableString from "./Components/Table/TableString";
+import React from "react";
+import TableString from './Components//Table/TableString'
 import TableTitle from "./Components/Table/TableTitle";
 import { Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -43,49 +43,55 @@ const words = [
   { id: '24', english: 'igneous', transcription: '[ˈɪgniəs]', russian: 'вулканического происхождения' },
   { id: '25', english: 'fossil fuel deposit', transcription: '[ˈfɑsəl ˈfjuəl dəˈpɑzɪt]', russian: 'месторождение горючих полезных ископаемых' }]
 
-export default function App() {
 
-  const [isLoaded, LoadPage] = useState(false);
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoaded: false
+    }
+  }
 
-  useEffect(() => {
-    LoadPage(true);
-  }, []);
+  componentDidMount() {
+    this.setState({ isLoaded: true });
+  }
 
-  return (
-    <BrowserRouter>
-      {
-        isLoaded ?
+  render() {
+    const { isLoaded } = this.state;
 
-          <div className="App">
-            <Header>
-              <Link to='/' className={styles.button}>Table</Link>
-              <Link to='/cards' className={styles.button} >Cards</Link>
-              <Link to='/game' className={styles.button} >Game</Link>
-            </Header>
-            <Routes>
-              <Route path='/' element={<Table>
-                <TableTitle />
-                {
-                  words.map((word) => <TableString id={word.id} english={word.english} transcription={word.transcription} russian={word.russian} />)
-                }
-              </Table>}>
+    return (
+      <BrowserRouter>
+        {
+          isLoaded ?
 
-              </Route>
-              <Route path='cards' element={<CardsPage words={words} />}></Route>
-              <Route path=':game' element={<Game words={words} />}>
+            <div className="App">
 
-              </Route>
+              <Header>
+                <Link to='/' className={styles.button}>Table</Link>
+                <Link to='/cards' className={styles.button} >Cards</Link>
+                <Link to='/game' className={styles.button} >Game</Link>
+              </Header>
+              <Routes>
+                <Route path='/' element={<Table>
+                  <TableTitle />
+                  {
+                    words.map((word) => <TableString id={word.id} english={word.english} transcription={word.transcription} russian={word.russian} />)
+                  }
+                </Table>}>
 
-              {/* <Route path=':error' element={<Error />}>
-            
-          </Route> */}
-            </Routes>
-          </div>
-          : <p>Is Loaded...</p>
-      }
-    </BrowserRouter>
-  );
+                </Route>
+                <Route path='cards' element={<CardsPage words={words} />}></Route>
+                <Route path='game' element={<Game words={words} />}></Route>
+
+                {/* <Route path=':error' element={<Error />}>
+
+            </Route> */}
+              </Routes>
+            </div>
+            :
+            <h1>Is Loaded...</h1>
+        }
+      </BrowserRouter>
+    )
+  }
 }
-
-
-
