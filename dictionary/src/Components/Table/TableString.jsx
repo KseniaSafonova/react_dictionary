@@ -2,36 +2,6 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import styles from './Table.module.css'
 
-
-// export default function TableString(props) {
-//     const { id, english, transcription, russian } = props;
-//     const [pressed, setPressed] = useState(false);
-//     const [value, setValue] = useState({
-//         english,
-//         transcription,
-//         russian
-//     });
-
-//     const HandleCancel = () => {
-//         setPressed(!pressed);
-//     }
-
-//     const HandleChange = (event) => {
-//         setValue((word) => {
-//             return { ...word, [event.target.name]: event.target.value }
-//         })
-//     }
-//     const EditCancel = () => {
-//         value.english = english;
-//         value.transcription = transcription;
-//         value.russian = russian
-//     }
-//     return (
-//         <tbody>
-//         </tbody >
-//     )
-// }
-
 export default class TableString extends React.Component {
     constructor(props) {
         super(props);
@@ -44,26 +14,25 @@ export default class TableString extends React.Component {
     }
 
     HandleCancel = () => {
-        this.setState({ pressed: true });
+        this.setState({ pressed: false });
     }
-
-    // HandleChange = (event) => {
-    //     setValue((word) => {
-    //         return { ...word, [event.target.name]: event.target.value }
-    //     })
-    // }
 
     HandleChange = (event) => {
-        this.setState({ english: event.target.value })
+        this.setState({ [event.target.name]: event.target.value });
     }
 
-    // EditCancel = () => {
-    //     this.setState({ english: english, transcription: transcription, russian: russian })
-    // }
+
+    EditCancel = () => {
+        this.setState({
+            english: this.props.english,
+            transcription: this.props.transcription,
+            russian: this.props.russian
+        })
+    }
 
     render() {
-        const { pressed } = this.state;
-        const { id, english, transcription, russian } = this.props;
+        const { pressed, english, transcription, russian } = this.state;
+        const { id } = this.props;
         return (
             <tbody>
                 {
