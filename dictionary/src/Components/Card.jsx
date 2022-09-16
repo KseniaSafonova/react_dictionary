@@ -24,11 +24,11 @@ export default class Card extends React.Component {
         return (
             <Context.Consumer>
                 {value => <div className={styles.card}>
-                    <p>{english}</p>
-                    <p>{transcription}</p>
+                    <p>{value.english}</p>
+                    <p>{value.transcription}</p>
                     {
                         this.state.pressed ?
-                            <p onClick={this.handleCancel}>{russian}</p>
+                            <p onClick={this.handleCancel}>{value.russian}</p>
                             :
                             <Button title='Показать перевод' showTranslation={this.handleClick} count={AddCount} />
                     }
