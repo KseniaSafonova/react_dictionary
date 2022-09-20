@@ -36,38 +36,37 @@ export default class TableString extends React.Component {
         const { id } = this.props;
         return (
             <Context.Consumer>
-                {value =>
-                    <tbody>
-                        {
-                            pressed ?
-                                <tr>
-                                    <td>{id}</td>
-                                    <td><input value={english} onChange={this.HandleChange} name={'english'} /></td>
-                                    <td><input value={transcription} onChange={this.HandleChange} name={'transcription'} /></td>
-                                    <td><input value={russian} onChange={this.HandleChange} name={'russian'} /></td>
-                                    <td>
-                                        <div className={styles.buttonBlock}>
-                                            <Button variant="outline-success" onClick={this.HandleCancel}>Save</Button>
-                                            <Button variant="outline-danger" onClick={() => { this.HandleCancel(); this.EditCancel(); }}>Cancel</Button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                :
-                                <tr>
-                                    <td>{id}</td>
-                                    <td>{english}</td>
-                                    <td>{transcription}</td>
-                                    <td>{russian}</td>
-                                    <td>
-                                        <div className={styles.buttonBlock}>
-                                            <Button variant="outline-warning" onClick={() => { this.setState({ pressed: true }); }}>Edit</Button>
-                                            <Button variant="outline-danger">Delete</Button>
-                                        </div>
-                                    </td>
-                                </tr>
-                        }
-                    </tbody >
-                }
+
+                <tbody>
+                    {
+                        pressed ?
+                            <tr>
+                                <td>{id}</td>
+                                <td><input value={english} onChange={this.HandleChange} name={'english'} /></td>
+                                <td><input value={transcription} onChange={this.HandleChange} name={'transcription'} /></td>
+                                <td><input value={russian} onChange={this.HandleChange} name={'russian'} /></td>
+                                <td>
+                                    <div className={styles.buttonBlock}>
+                                        <Button variant="outline-success" onClick={this.HandleCancel}>Save</Button>
+                                        <Button variant="outline-danger" onClick={() => { this.HandleCancel(); this.EditCancel(); }}>Cancel</Button>
+                                    </div>
+                                </td>
+                            </tr>
+                            :
+                            <tr>
+                                <td>{id}</td>
+                                <td>{english}</td>
+                                <td>{transcription}</td>
+                                <td>{russian}</td>
+                                <td>
+                                    <div className={styles.buttonBlock}>
+                                        <Button variant="outline-warning" onClick={() => { this.setState({ pressed: true }); }}>Edit</Button>
+                                        <Button variant="outline-danger">Delete</Button>
+                                    </div>
+                                </td>
+                            </tr>
+                    }
+                </tbody >
 
             </Context.Consumer>
         )

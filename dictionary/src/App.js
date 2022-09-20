@@ -41,7 +41,7 @@ export default class App extends React.Component {
           throw new Error('Oops! Something went wrong!');
         }
       })
-      .then((response) => { this.setState({ words: response, isLoaded: false, }) })
+      .then((response) => { this.setState({ words: response, isLoaded: true }) })
       .catch(error => this.setState({ error, isLoaded: false }));
 
   }
@@ -49,13 +49,13 @@ export default class App extends React.Component {
 
 
   render() {
-    const { words } = this.state;
+    const { words, isLoaded } = this.state;
 
     return (
-      <Context.Provider value={this.state}>
+      <Context.Provider value={words}>
         <BrowserRouter>
           {
-            this.state.isLoaded ?
+            isLoaded ?
 
               <div className="App">
                 <Header>
@@ -65,7 +65,7 @@ export default class App extends React.Component {
                 </Header>
                 <Routes>
                   <Route path='/' element={<Table>
-                    <TableTitle />
+                    {/* <TableTitle /> */}
                     {/* {
                       words.map((word) => <TableString id={word.id} english={word.english} transcription={word.transcription} russian={word.russian} />)
                     } */}

@@ -8,9 +8,15 @@ export default class Table extends React.Component {
         return (
             <Context.Consumer>
                 {/* <TableTitle /> */}
-                {value => {
-                    value.words.map((word) => <TableString id={word.id} english={word.english} transcription={word.transcription} russian={word.russian} />)
-                }
+                {/* {value =>
+                    value.map((word) =>
+                        <TableString id={word.id}
+                            english={word.english}
+                            transcription={word.transcription}
+                            russian={word.russian} />)
+                } */}
+                {
+                    value => value.map((word) => <div>{word.english}</div>)
                 }
             </Context.Consumer>
         )
