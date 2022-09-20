@@ -1,8 +1,5 @@
 import React from "react";
-import TableString from './Components/Table/TableString'
-import TableTitle from "./Components/Table/TableTitle";
-import Table from "./Components/Table/Table";
-// import { Table } from 'react-bootstrap';
+import WordsTable from "./Components/Table/WordsTable";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Header from './Components/Header';
@@ -64,14 +61,7 @@ export default class App extends React.Component {
                   <Link to='/game' className={styles.button} >Game</Link>
                 </Header>
                 <Routes>
-                  <Route path='/' element={<Table>
-                    {/* <TableTitle /> */}
-                    {/* {
-                      words.map((word) => <TableString id={word.id} english={word.english} transcription={word.transcription} russian={word.russian} />)
-                    } */}
-                  </Table>}>
-
-                  </Route>
+                  <Route path='/' element={<WordsTable />}></Route>
                   <Route path='cards' element={<CardsPage words={words} />}></Route>
                   <Route path='game' element={<Game words={words} />}></Route>
 
@@ -84,7 +74,7 @@ export default class App extends React.Component {
               <h1>Is Loaded...</h1>
           }
         </BrowserRouter>
-      </Context.Provider>
+      </Context.Provider >
     )
   }
 }

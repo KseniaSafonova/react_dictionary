@@ -1,19 +1,22 @@
 import Card from "./Card";
 import styles from './../Styles/CardsPage.module.css';
 import React from "react";
+import Context from "../Context";
 
 
 export default class CardsPage extends React.Component {
     render() {
-        const { words } = this.props;
         return (
-
             <div className={styles.cardsPage}>
-                {
-                    words.map((word) => <Card english={word.english} transcription={word.transcription} russian={word.russian} />)
-                }
+                <Context.Consumer>
+                    {
+                        value => value.map((word) =>
+                            <Card english={word.english}
+                                russian={word.russian}
+                                transcription={word.transcription} />)
+                    }
+                </Context.Consumer>
             </div>
-
         )
     }
 }
